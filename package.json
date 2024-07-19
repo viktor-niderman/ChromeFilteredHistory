@@ -1,0 +1,20 @@
+{
+  "name": "Filtered History",
+  "description": "A powerful extension to manage and delete your browsing history based on custom filters set by the user.",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "vue": "^3.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.5.0",
+    "vite": "^5.0.0",
+    "vite-plugin-web-extension": "^4.0.0",
+    "webextension-polyfill": "^0.10.0"
+  }
+}
