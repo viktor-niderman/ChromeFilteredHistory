@@ -1,0 +1,14 @@
+{
+  "name": "Filtered History",
+  "description": "A powerful extension to manage and delete your browsing history based on custom filters set by the user. Ensure your privacy and keep your browsing history clean and relevant.",
+  "version": "1.0",
+  "permissions": [
+    "history",
+    "storage"
+  ],
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "hello.html",
+    "default_icon": "hello_extensions.png"
+  }
+}
