@@ -2,34 +2,40 @@
 import { ref } from 'vue'
 
 let origin = ref('');
+let output = ref('');
+let inProcess = ref(false);
 
-const clear = () => {
-//   chrome.browsingData.remove({
-//     "since": 0,
-//     "origins": ['https://' + origin, 'http://' + origin]
-//   }, {
-//     appcache: true,
-//     cache: true,
-//   }, () => {});
-
+const clear = (count) => {
   chrome.history.search({text: origin.value, startTime: 0}, function(results) {
+    count += results.length;
     for (let item of results) {
-      chrome.history.deleteUrl({url: item.url}, function() {
-        console.log(`Deleted: ${item.url}`);
-      });
+      chrome.history.deleteUrl({url: item.url}, () => {});
+    }
+    output.value = 'Deleted ' + count + ' items';
+    if (results.length === 100) {
+      clear(count);
+    } else {
+      inProcess.value = false;
     }
   });
 }
 
+const submit = () => {
+  inProcess.value = true;
+  clear(0)
+}
 
 </script>
 
 <template>
   <div>
       <h1>Filtered History</h1>
-    <p>Enter Origin:</p>
+    <p>Enter What you want to delete:</p>
     <input v-model="origin" placeholder="google.com">
-    <button @click="clear()">Ok</button>
+    <button @click="submit()" :disabled="inProcess">Ok</button>
+    <p>
+      {{output}}
+    </p>
   </div>
 </template>
 
