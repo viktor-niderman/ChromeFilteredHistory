@@ -71,21 +71,21 @@ const submitDelete = () => {
 </script>
 
 <template>
-  <main class="max-w-lg mx-auto p-4 bg-white shadow-md rounded-lg mt-2">
-    <h1 class="text-3xl font-bold text-gray-800 mb-4">Filtered History</h1>
+  <main class="max-w-lg mx-auto p-3 bg-white shadow-md rounded-lg mt-1">
+    <h1 class="text-2xl font-bold text-gray-800 mb-2">Filtered History</h1>
     <p class="text-gray-600 mb-2">What mentions do you want to remove?</p>
-    <input
-      v-model="searchStr"
-      placeholder="Anime"
-      class="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:border-blue-500"
-      @input="handleSearch"
-      :disabled="inProcess"
-    />
-    <div class="flex space-x-2 mb-4 justify-between items-center">
+    <div class="flex space-x-2 mb-3 justify-between items-center">
+      <input
+        v-model="searchStr"
+        placeholder="Anime"
+        class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+        @input="handleSearch"
+        :disabled="inProcess"
+      />
       <button
         @click="submitDelete"
         :disabled="countFound === 0 || inProcess"
-        class="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 disabled:bg-gray-300 max-w-52 "
+        class="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 disabled:bg-gray-300 max-w-52 border border-red-400-300 "
       >
         <div v-if="inProcess">
           <Spinner class="h-0.5"/> Deleting...
@@ -94,6 +94,10 @@ const submitDelete = () => {
           Delete {{ countFound ? `${countFound} items` : '' }}
         </div>
       </button>
+    </div>
+
+    <div class="flex space-x-2 mb-4 justify-between items-center">
+
       <div class="flex items-center select-none">
         <input v-model="cacheShouldBeDeleted" type="checkbox" id="deleteCacheCheckbox" class="form-checkbox h-5 w-5 text-blue-600">
         <label for="deleteCacheCheckbox" class="ml-2 text-gray-700">Also delete cache</label>
