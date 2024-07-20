@@ -5,7 +5,8 @@ import Spinner from '../components/Spinner.vue'
 let searchStr = ref('')
 let inProcess = ref(false)
 const historyFoundArray = ref([])
-const cacheShouldBeDeleted = ref(false)
+const checkboxDeleteCache = ref(false)
+//const checkboxAutoDelete = ref(false)
 
 let countFound = computed(() => {
   return historyFoundArray.value.length
@@ -40,7 +41,7 @@ const clearHistory = () => {
     origins.add(item.origin)
     chrome.history.deleteUrl({ url: item.url }, () => {})
   }
-  if (cacheShouldBeDeleted.value) {
+  if (checkboxDeleteCache.value) {
     clearCache([...origins]);
   } else {
     searchInBrowserHistory()
@@ -96,12 +97,15 @@ const submitDelete = () => {
       </button>
     </div>
 
-    <div class="flex space-x-2 mb-4 justify-between items-center">
-
-      <div class="flex items-center select-none">
-        <input v-model="cacheShouldBeDeleted" type="checkbox" id="deleteCacheCheckbox" class="form-checkbox h-5 w-5 text-blue-600">
+    <div class="flex mb-4 justify-between items-center">
+      <div class="flex items-center select-none w-52">
+        <input v-model="checkboxDeleteCache" type="checkbox" id="deleteCacheCheckbox" class="form-checkbox h-5 w-5 text-blue-600">
         <label for="deleteCacheCheckbox" class="ml-2 text-gray-700">Also delete cache</label>
       </div>
+<!--      <div class="flex items-center select-none w-52 ps-1">-->
+<!--        <input v-model="checkboxAutoDelete" type="checkbox" id="deleteCacheCheckbox" class="form-checkbox h-5 w-5 text-blue-600">-->
+<!--        <label for="deleteCacheCheckbox" class="ml-2 text-gray-700">Auto Delete</label>-->
+<!--      </div>-->
     </div>
 
     <p class="text-gray-600 mt-4">
