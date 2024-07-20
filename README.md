@@ -2,7 +2,7 @@
 
 Filtered History is a Chrome extension that allows you to manage and delete your browsing history based on custom filters set by the user. Ensure your privacy and keep your browsing history clean and relevant.
 
-![Filtered History](./image.png)
+<img src="./image.png" alt="Filtered History" width="300">
 
 ## Features
 
