@@ -1,4 +1,4 @@
-VERSION=$(jq -r .version "src/manifest.json")
+VERSION=$(jq -r .version "package.json")
 echo 'Current version: '$VERSION
 
 FOLDER='v'$VERSION
