@@ -1,4 +1,4 @@
-import Popup from "./pages/Popup.vue";
+import Popup from "./Popup.vue";
 import { createApp } from "vue";
 import './index.css'
 
